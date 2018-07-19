@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C78AEB982100665F007DA210 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A4A1FD20F881510056FE96 /* RxCocoa.framework */; };
+		C78AEB992100665F007DA210 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A4A1FC20F881500056FE96 /* RxSwift.framework */; };
 		C7A4A1FE20F881510056FE96 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A4A1FC20F881500056FE96 /* RxSwift.framework */; };
 		C7A4A1FF20F881510056FE96 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A4A1FD20F881510056FE96 /* RxCocoa.framework */; };
 		C7F1F26020F7972800683D5E /* RxDucks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F1F25620F7972800683D5E /* RxDucks.framework */; };
@@ -61,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C78AEB982100665F007DA210 /* RxCocoa.framework in Frameworks */,
+				C78AEB992100665F007DA210 /* RxSwift.framework in Frameworks */,
 				C7F1F26020F7972800683D5E /* RxDucks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,6 +164,7 @@
 				C7F1F25B20F7972800683D5E /* Sources */,
 				C7F1F25C20F7972800683D5E /* Frameworks */,
 				C7F1F25D20F7972800683D5E /* Resources */,
+				C78AEB9621005A90007DA210 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -224,6 +229,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C78AEB9621005A90007DA210 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C7F1F25120F7972800683D5E /* Sources */ = {
@@ -389,7 +413,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Example/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = RxDucks/Info.plist;
@@ -420,7 +443,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Example/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = RxDucks/Info.plist;
@@ -443,6 +465,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = RxDucksTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,6 +487,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = RxDucksTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
