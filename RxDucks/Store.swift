@@ -20,19 +20,22 @@ open class Store<State: StateType>: StoreType {
         return _state.skip(1)
     }
 
+    /// the current state the store has
     public var currentState: State {
         return _state.value
     }
 
-    /// It doesn't terminate with error or completed.
     /// Observable that sends changed elements and current element.
+    /// IgnorableAction changes are not notified.
+    /// it doesn't terminate with error or completed.
     public var state: Observable<State> {
         return newState
             .startWith(_state.value)
     }
 
-    /// It doesn't terminate with error or completed.
     /// Observable that only sends changed elements, ignoring current element.
+    /// IgnorableAction changes are not notified.
+    /// it doesn't terminate with error or completed.
     public var newState: Observable<State> {
         return Observable.zip(_action, _newState)
             .flatMap { action, state -> Observable<State> in
@@ -43,20 +46,31 @@ open class Store<State: StateType>: StoreType {
             }
     }
 
+    /// Binder that dispatch an action.
     public var dispatcher: Binder<Action> {
         return Binder(self, scheduler: CurrentThreadScheduler.instance) { me, type in
             me.dispatch(type)
         }
     }
 
+    /// Dispatch an action through the middlewares and the reducers to mutate the state.
+    /// - Parameter action: the action that will be through the middlewares and the reducers.
     public func dispatch(_ action: Action) {
         _dispatcher.accept(action)
     }
 
+    /// initialize the Store.
+    /// - Parameter reducer: the reducer to be executed by the dispatcher.
+    /// - Parameter state: the initial state.
+    /// - Parameter middlewares: the middlewares of Variadic Parameters to be executed by the dispatcher.
     public convenience init<R: Reducer>(reducer: R, state: State, middlewares: MiddlewareType...) where R.State == State {
         self.init(reducer: reducer, state: state, middlewares: middlewares as [MiddlewareType])
     }
 
+    /// initialize the Store.
+    /// - Parameter reducer: the reducer to be executed by the dispatcher.
+    /// - Parameter state: the initial state.
+    /// - Parameter middlewares: the middlewares of Array to be executed by the dispatcher.
     public init<R: Reducer>(reducer: R, state: State, middlewares: [MiddlewareType]) where R.State == State {
         _state = BehaviorRelay<State>(value: state)
 
@@ -93,12 +107,20 @@ open class Store<State: StateType>: StoreType {
 }
 
 extension Store {
+    /// Specific element avoiding duplicate notifications.
+    /// IgnorableAction changes are not notified.
+    /// - Parameter selector: the closure that allows to extract an Element
+    /// - Returns: an Observable of the Element
     public func specifyState<E>(_ selector: @escaping (State) -> E) -> Observable<E> where E: Equatable {
         return state
             .map(selector)
             .distinctUntilChanged()
     }
 
+    /// Specific element avoiding duplicate notifications, ignoring current element.
+    /// IgnorableAction changes are not notified.
+    /// - Parameter selector: the closure that allows to extract an Element
+    /// - Returns: an Observable of the Element
     public func specifyNewState<E>(_ selector: @escaping (State) -> E) -> Observable<E> where E: Equatable {
         return specifyState(selector)
             .skip(1)

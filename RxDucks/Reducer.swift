@@ -11,5 +11,6 @@ import RxSwift
 public protocol Reducer {
     associatedtype State: StateType
 
+    /// mutates an input state to an output state according to the action.
     func reduce(_ state: State, action: Action) -> State
 }
