@@ -1,0 +1,5 @@
+ignore:
+  - "Carthage"
+  - "Example"
+  - "RxDucksTests"
+  - "Support Files"
