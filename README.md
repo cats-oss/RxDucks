@@ -1,6 +1,8 @@
 # :duck: RxDucks
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build Status](https://travis-ci.org/cats-oss/RxDucks.svg?branch=master)](https://travis-ci.org/cats-oss/RxDucks)
+[![codecov](https://codecov.io/gh/cats-oss/RxDucks/branch/master/graph/badge.svg)](https://codecov.io/gh/cats-oss/RxDucks)
 [![Version](https://img.shields.io/cocoapods/v/RxDucks.svg?style=flat)](http://cocoadocs.org/docsets/RxDucks)
 [![License](https://img.shields.io/cocoapods/l/RxDucks.svg?style=flat)](http://cocoadocs.org/docsets/RxDucks)
 [![Platform](https://img.shields.io/cocoapods/p/RxDucks.svg?style=flat)](http://cocoadocs.org/docsets/RxDucks)
