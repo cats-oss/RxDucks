@@ -101,7 +101,7 @@ struct AppReducer: Reducer {
             state.counter -= 1
         case is ResetAction:
             state.counter = 0
-        case id LogInAction:
+        case is LogInAction:
             state.user.loggedIn = true
         default:
             break
