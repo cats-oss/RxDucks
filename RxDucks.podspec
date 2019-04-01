@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'RxDucks'
-  s.version          = '0.1.0'
-  s.swift_version    = '4.1'
+  s.version          = '0.2.0'
+  s.swift_version    = '5.0'
   s.summary          = 'RxDucks is a Redux-like framework working on RxSwift.'
   s.homepage         = 'https://github.com/cats-oss/RxDucks'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target   = '2.0'
   s.source_files     = 'RxDucks/**/*.{h,swift}'
   s.requires_arc     = true
-  s.dependency "RxSwift", "~> 4.1"
-  s.dependency "RxCocoa", "~> 4.1"
+  s.dependency "RxSwift", "~> 4.4"
+  s.dependency "RxCocoa", "~> 4.4"
 end

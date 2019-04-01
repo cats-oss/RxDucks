@@ -19,8 +19,8 @@ Redux is one of the modern application architectures. For details, refer to the 
 
 ## Requirements
 
-- Swift 4.1
-- RxSwift 4.1 or later
+- Swift 5.0
+- RxSwift 4.4 or later
 
 ## How to Install
 
